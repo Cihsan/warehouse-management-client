@@ -15,7 +15,6 @@ const Header = () => {
                                 <NavLink className="nav-link active" aria-current="page" to="/home">Home</NavLink></li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/blogs">Blogs</NavLink></li>
-                            
                         </ul>
                     </div>
                 </div>
