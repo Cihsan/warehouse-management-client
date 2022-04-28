@@ -2,7 +2,7 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel'
 const Banner = () => {
     return (
-        <div>
+        <div className='container mt-3'>
             <Carousel>
   <Carousel.Item>
     <img
@@ -30,7 +30,7 @@ const Banner = () => {
   </Carousel.Item>
   <Carousel.Item>
     <img
-      className="d-block w-100"
+      className="d-block"
       src="https://i.ibb.co/kMnJ5vt/03.jpg"
       alt="Third slide"
     />
@@ -46,3 +46,4 @@ const Banner = () => {
 };
 
 export default Banner;
+

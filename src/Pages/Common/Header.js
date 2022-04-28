@@ -4,6 +4,9 @@ import { NavLink } from 'react-router-dom';
 const Header = () => {
     return (
         <div>
+            <div className='bg-light p-5'>
+            <NavLink className="nav-link" to="/login">Login</NavLink>
+            </div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container ">
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
