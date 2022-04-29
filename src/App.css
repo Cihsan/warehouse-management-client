@@ -4,7 +4,7 @@
 Carousel.Item{
   background-color:#000;
 }
-img{
+.banner{
   mix-blend-mode: multiply;
   height: 90vh;
 }
