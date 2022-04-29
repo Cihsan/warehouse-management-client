@@ -2,9 +2,13 @@ import React from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { NavLink } from 'react-router-dom';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth from '../../Spacial/firebase_init';
 const Login = () => {
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    
     return (
-        <div className=''>
+        <div>
             <div className='p-4 bg-info'>
             </div>
             <Form className='w-25 m-auto'>
@@ -20,6 +24,9 @@ const Login = () => {
                     Submit
                 </Button>
             </Form>
+            <div className='text-center mt-3'>
+                <button onClick={() => signInWithGoogle()}>Login With Google</button>
+            </div>
         </div>
     );
 };
