@@ -62,8 +62,8 @@ const Login = () => {
                 <ToastContainer/>
                 <Form onSubmit={loginEmailPass} className='w-25 m-auto'>
                     
-                    <h2 className='mb-3 mt-3'>Please Login</h2>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <span className='mb-3 mt-3 h3 border-bottom h4 pb-2'>Please Login</span>
+                    <Form.Group className="mb-3 mt-4" controlId="formBasicEmail">
                         <Form.Control type="email" ref={refmail} placeholder="Enter email" required/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
