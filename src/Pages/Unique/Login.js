@@ -64,14 +64,14 @@ const Login = () => {
                     
                     <h2 className='mb-3 mt-3'>Please Login</h2>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control type="email" name='email' placeholder="Enter email" required/>
+                        <Form.Control type="email" ref={refmail} placeholder="Enter email" required/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Control type="password" name='pass' placeholder="Password" required/>
                     </Form.Group>
-                    <small>If you don't have an account, please <NavLink to="/login">Register Here</NavLink></small>
+                    <small>If you don't have an account, please <NavLink to="/register">Register Here</NavLink></small>
                     <Button className='mt-3' variant="primary" type="submit">
-                        Submit
+                        Login
                     </Button>
                 </Form>
                
