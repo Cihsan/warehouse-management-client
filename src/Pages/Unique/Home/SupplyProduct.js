@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../assets/Style/SupplyProduct.css'
+import '../../../assets/Style/SupplyProduct.css'
 const SupplyProduct = () => {
     const [products, setProduct] = useState([])
     useEffect(() => {
@@ -23,7 +23,9 @@ const SupplyProduct = () => {
                             <p>{product.price}</p>
                             <p>{product.qt}</p>
                             <p>{product.sName}</p>
+                            
                             <button onClick={() => navigate(`/update-quantity/${product._id}`)} className='btn btn-info text-white'>Stock Update</button>
+                            
                         </div>
                     )
                 }

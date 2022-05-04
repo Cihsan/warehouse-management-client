@@ -1,6 +1,4 @@
 import React from 'react';
-import Button from 'react-bootstrap/esm/Button';
-import Form from 'react-bootstrap/Form'
 import { Link } from 'react-router-dom';
 const AddItems = () => {
 
@@ -10,7 +8,7 @@ const AddItems = () => {
         const price = event.target.price.value
         const qt = event.target.qt.value
         const sName = event.target.sName.value
-        const product={pName,pic,price,qt,sName}
+        const product = { pName, pic, price, qt, sName }
         const url = `http://localhost:5000/products`
         fetch(url, {
             method: 'POST',
@@ -32,28 +30,41 @@ const AddItems = () => {
                 <h2>Add Your Best Product</h2>
             </div>
             <div className='mt-3'>
-                <Form onSubmit={addItem} className='w-50 mx-auto'>
+                <form onSubmit={addItem} className="row g-3">
 
-                    <Form.Group className="mb-2" >
-                        <Form.Control type="text" name='pName' placeholder="Your Product Name" required />
-                    </Form.Group>
-                    <Form.Group className="mb-2" >
-                        <Form.Control type="text" name='pic' placeholder="Product image URL" />
-                    </Form.Group>
-                    <Form.Group className="mb-2" >
-                        <Form.Control type="number" name='price' placeholder="Product Price" required />
-                    </Form.Group>
-                    <Form.Group className="mb-2" >
-                        <Form.Control type="number" name='qt' placeholder="Product Quantity" required />
-                    </Form.Group>
-                    <Form.Group className="mb-2" >
-                        <Form.Control type="text" name='sName' placeholder="Supplier Name" required />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Submit Product
-                    </Button>
-                </Form>
+                    <div className="col-md-4">
+                        <label className="form-label">Product Name</label>
+                        <input type="text" className="form-control" name='pName' placeholder="Your Product Name" required />
+                    </div>
 
+                    <div className="col-md-4">
+                        <label className="form-label">Price</label>
+                        <div className="input-group ">
+                            <span className="input-group-text">$</span>
+                            <input type="number" className="form-control" name='price' placeholder="Product Price" required />
+                        </div>
+                    </div>
+                    <div className="col-md-4">
+                        <label className="form-label">Quantity</label>
+                        <div className="input-group ">
+                            <input className="form-control" type="number" name='qt' placeholder="Product Quantity" required />
+                        </div>
+                    </div>
+
+                    <div className="col-md-6">
+                        <label className="form-label">Image URL</label>
+                        <input type="text" className="form-control" name='pic' placeholder="Product image URL" required />
+                    </div>
+
+                    <div className="col-md-6">
+                        <label className="form-label">Supplier</label>
+                        <input type="text" className="form-control" name='sName' placeholder="Supplier Name" required />
+                    </div>
+
+                    <div className="col-12">
+                        <button className="btn btn-primary w-100" type="submit">Submit Product</button>
+                    </div>
+                </form>
             </div>
 
         </div>

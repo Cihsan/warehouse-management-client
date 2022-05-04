@@ -2,94 +2,151 @@
     syntax: "<angle>";
     initial-value: 132deg;
     inherits: false;
-  }
-  
-/*   :root {
-    --cards-height: 50vh;
-    --cards-width: calc(var(--cards-height) / 1.2);
-  } */
-  
-  
-/*   body {
-    min-height: 100vh;
-    background: #212534;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    box-sizing: border-box;
-  } */
-  
-  
-  .cards {
-    /* background: #191c29; */
-    /* width: var(--cards-width); */
-    /* height: var(--cards-height); */
-    /* padding: 3px; */
+}
+
+.cards {
     position: relative;
-    /* border-radius: 6px; */
-    /* justify-content: center;
-    align-items: center;
-    text-align: center;
-    display: flex; */
     margin: 10px;
-    /* font-size: 1.5em; */
     color: #4e00c2;
     cursor: pointer;
-    /* font-family: cursive; */
-  }
-  
-  .cards:hover {
+}
+
+.cards:hover {
     color: rgb(88 199 250 / 100%);
     transition: color 1s;
-  }
-  /* .cards:hover:before, .cards:hover:after {
-    animation: none;
-    opacity: 0;
-  } */
-  
-  
-  .cards::before {
+}
+
+.cards::before {
     content: "";
     width: 104%;
     height: 102%;
     border-radius: 8px;
-    background-image: linear-gradient(
-      var(--rotate)
-      , #5ddcff, #3c67e3 43%, #4e00c2);
-      position: absolute;
-      z-index: -1;
-      top: -1%;
-      left: -2%;
-      animation: spin 2.5s linear infinite;
-  }
-  
-  .cards::after {
+    background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+
+.cards::after {
     position: absolute;
     content: "";
-    /* top: calc(var(--cards-height) / 6); */
-    /* left: 0; */
-    /* right: 0; */
     z-index: -1;
-    /* height: 100%; */
-    /* width: 100%; */
     margin: 0 auto;
     transform: scale(0.8);
     filter: blur(calc(var(--cards-height) / 6));
-    background-image: linear-gradient(
-      var(--rotate)
-      , #5ddcff, #3c67e3 43%, #4e00c2);
-      opacity: 1;
+    background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
     transition: opacity .5s;
     animation: spin 2.5s linear infinite;
-  }
-  
-  @keyframes spin {
+}
+
+@keyframes spin {
     0% {
-      --rotate: 0deg;
+        --rotate: 0deg;
     }
+
     100% {
-      --rotate: 360deg;
+        --rotate: 360deg;
     }
+}
+
+/* 3 */
+.btn-ani {
+    background: rgb(0,172,238);
+  background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+    width: 130px;
+    height: 40px;
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    
+  }
+  .btn-ani span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .btn-ani:before,
+  .btn-ani:after {
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 0;
+     background: rgba(2,126,251,1);
+    transition: all 0.3s ease;
+  }
+  .btn-ani:before {
+    height: 0%;
+    width: 2px;
+  }
+  .btn-ani:after {
+    width: 0%;
+    height: 2px;
+  }
+  .btn-ani:hover{
+     background: transparent;
+    box-shadow: none;
+  }
+  .btn-ani:hover:before {
+    height: 100%;
+  }
+  .btn-ani:hover:after {
+    width: 100%;
+  }
+  .btn-ani span:hover{
+     color: rgba(2,126,251,1);
+  }
+  .btn-ani span:before,
+  .btn-ani span:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+     background: rgba(2,126,251,1);
+    transition: all 0.3s ease;
+  }
+  .btn-ani span:before {
+    width: 2px;
+    height: 0%;
+  }
+  .btn-ani span:after {
+    width: 0%;
+    height: 2px;
+  }
+  .btn-ani span:hover:before {
+    height: 100%;
+  }
+  .btn-ani span:hover:after {
+    width: 100%;
+  }
+
+.btn-min {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+        7px 7px 20px 0px rgba(0, 0, 0, .1),
+        4px 4px 5px 0px rgba(0, 0, 0, .1);
+    outline: none;
+}
+
+.frame {
+    width: 90%;
+    margin: 40px auto;
+    text-align: center;
+  }
+  button {
+    margin: 20px;
   }

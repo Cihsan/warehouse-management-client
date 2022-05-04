@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './Pages/Common/Header';
 import Blogs from './Pages/Unique/Blogs';
-import Home from './Pages/Unique/Home';
+import Home from './Pages/Unique/Home/Home';
 import Login from './Pages/Unique/Login';
 import 'react-toastify/dist/ReactToastify.css';
 import UpdateQuantity from './Pages/Unique/UpdateQuantity';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Banner from './Banner';
-import SupplyProduct from './SupplyProduct';
-import TextBG from './TextBG';
+import Banner from '../Home/Banner';
+import SupplyProduct from '../Home/SupplyProduct';
+import TextBG from '../Home/TextBG';
 
 const Home = () => {
     return (
