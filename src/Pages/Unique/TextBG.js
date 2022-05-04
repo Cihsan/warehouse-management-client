@@ -8,6 +8,7 @@ const TextBG = () => {
         event.preventDefault()
         const text = event.target.txt.value
         setWText(text)
+        event.target.reset()
     }
     return (
         <div className='container'>
@@ -16,7 +17,7 @@ const TextBG = () => {
             </div>
             <Form className='w-50 mx-auto' onSubmit={write}>
                 <Form.Group className="">
-                    <Form.Control type="text" name='txt' placeholder="Type it Will Display" required />
+                    <Form.Control type="text" name='txt' placeholder="Type it Will Display" required/>
                 </Form.Group>
                 <Button className='mt-2' variant="primary" type="submit">
                     Type

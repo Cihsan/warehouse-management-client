@@ -57,16 +57,16 @@ const Register = () => {
                 {/* <div className='h'>
                 </div> */}
 
-                <Form.Group className="mb-3 mt-4" >
+                <Form.Group className="mb-3 mt-4 cards" >
                     <Form.Control type="text" name='name' placeholder="Enter Your Name" required />
                 </Form.Group>
-                <Form.Group className="mb-3" >
+                <Form.Group className="mb-3 cards" >
                     <Form.Control type="email" name='email' placeholder="Enter Your Email" required />
                 </Form.Group>
-                <Form.Group className="mb-3" >
+                <Form.Group className="mb-3 cards" >
                     <Form.Control type="password" name='pass' placeholder="Password" required />
                 </Form.Group>
-                <Form.Group className="mb-3" >
+                <Form.Group className="mb-3 cards" >
                     <Form.Control type="password" name='Confirm-pass' placeholder="Confirm Password" required />
                 </Form.Group>
                 <small>If you have an account, please <NavLink to="/login">Login Here</NavLink></small><br />

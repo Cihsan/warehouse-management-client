@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const AllProduct = () => {
     const [products, setProduct] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/products/')
-        // fetch('https://secret-eyrie-28226.herokuapp.com/products')
+        // fetch('http://localhost:5000/products/')
+        fetch('https://secret-eyrie-28226.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])
@@ -14,8 +14,8 @@ const AllProduct = () => {
         const ask= window.confirm('Are sure to delete')
         if(ask){
             console.log(id)
-            const url=`http://localhost:5000/products/${id}`
-            // const url=`https://secret-eyrie-28226.herokuapp.com/products/${id}`
+            // const url=`http://localhost:5000/products/${id}`
+            const url=`https://secret-eyrie-28226.herokuapp.com/products/${id}`
             fetch(url,{
                 method:'DELETE'
             })
