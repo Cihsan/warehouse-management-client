@@ -19,7 +19,7 @@ const SupplyProduct = () => {
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 sm-g-5 justify-content-center">
                 {
                     products.slice(0, 6).map(product =>
-                        <div key={product._id} className="card p-2 mx-3 cards">
+                        <div key={product._id} className="card p-2 mx-3 cards ">
                             <img className='w-100 mb-2' src={product.pic} alt="" />
                             <ul style={{ listStyle: 'none' }}>
                                 <li><h5>{product.pName}</h5></li>
@@ -27,7 +27,7 @@ const SupplyProduct = () => {
                                 <li>{product.qt}</li>
                                 <li>{product.sName}</li>
                             </ul>
-                            <button onClick={() => navigate(`/update-quantity/${product._id}`)} className='btn btn-info text-white'>Stock Update <BsArrowUpCircle /></button>
+                            <button onClick={() => navigate(`/update-quantity/${product._id}`)} className='btn btn-outline-info'>Stock Update <BsArrowUpCircle /></button>
 
                         </div>
                     )

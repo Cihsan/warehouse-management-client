@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import auth from '../../Spacial/firebase_init';
+import auth from '../../../Spacial/firebase_init';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -35,7 +35,7 @@ const Login = () => {
     }
     //Loading 
     let spinner;
-    if (loadingLoginGoogle || emailPassLoginLoading) {
+    if (loadingLoginGoogle || emailPassLoginLoading || loading) {
         spinner = <div class="d-flex align-items-center text-info">
             <strong>Loading...</strong>
             <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
@@ -43,10 +43,11 @@ const Login = () => {
     }
     //Error Handle 
     let errorMassage
-    if (errLoginGoogle || emailPassLoginError) {
+    if (errLoginGoogle || emailPassLoginError ||error) {
         errorMassage = <small className='text-danger border border-primary p-2 mt-5'>
             {errLoginGoogle?.message}
             {emailPassLoginError?.message}
+            {error?.message}
         </small>
     }
 

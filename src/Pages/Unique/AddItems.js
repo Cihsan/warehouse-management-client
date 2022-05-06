@@ -28,9 +28,23 @@ const AddItems = () => {
         event.target.reset()
         event.preventDefault()
     }
+    let spinner;
+    if (loading) {
+        spinner = <div class="d-flex align-items-center text-info">
+            <strong>Loading...</strong>
+            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+        </div>
+    }
+    let errorMassage
+    if (error) {
+        errorMassage = <small className='text-danger border border-primary p-2 mt-5'>
+            {error?.message}
+        </small>
+    }
     return (
         <div className='container '>
             <ToastContainer />
+            {spinner}
             <div className='text-center mt-3'>
                 <h2>Add Your Best Product</h2>
             </div>
@@ -70,6 +84,7 @@ const AddItems = () => {
                         <button className="btn btn-primary w-100" type="submit">Submit Product</button>
                     </div>
                 </form>
+                {errorMassage}
             </div>
             <div className='text-center mt-3'>
                 <Link className='btn btn-dark mb-2 mx-auto text-white' to={'/all-product'}>Check All Item <BsArrowRightCircle /></Link>
