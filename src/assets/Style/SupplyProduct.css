@@ -9,10 +9,11 @@
     margin: 10px;
     color: #4e00c2;
     cursor: pointer;
+    
 }
 
 .cards:hover {
-    color: rgb(88 199 250 / 100%);
+    color: gray;
     transition: color 1s;
 }
 

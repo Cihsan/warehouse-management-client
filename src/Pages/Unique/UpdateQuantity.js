@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Button from 'react-bootstrap/esm/Button';
-import Form from 'react-bootstrap/Form'
+import { AiOutlineCarryOut } from 'react-icons/ai';
+
 const UpdateQuantity = () => {
     const { id } = useParams()
     const [products, setProduct] = useState({})
-    const [number, setNumber] = useState(1)
+    const [number, setNumber] = useState(0)
     useEffect(() => {
         const url = `http://localhost:5000/products/${id}`
         // const url = `https://secret-eyrie-28226.herokuapp.com/products/${id}`
@@ -15,43 +15,70 @@ const UpdateQuantity = () => {
     }, [products])
 
     const deliver = (id) => {
-        //send data
-        const { dist } = products.qt
-        const cQuantity = dist - number
-        setNumber(cQuantity)
+        const {qt}=products
+        const minus = parseInt(qt) - 1
+        const up= qt-minus
+        setNumber(up)
         console.log(number);
-        const url = `http://localhost:5000/products/${id}`
+        const url = `http://localhost:5000/products/minus/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ number })
+            body: JSON.stringify({number})
         })
             .then(res => res.json())
             .then(data => console.log(data))
         alert('Delivered Product')
     }
+    const addQuantity = event => {
+        const quantity = event.target.quantity.value
+        const plusQuantity = [parseInt(quantity) + parseInt(products.qt)]
+        const setQuantity = { plusQuantity }
+        setProduct(setQuantity)
+        console.log(setQuantity);
+        const url = `http://localhost:5000/products/plus/${id}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(setQuantity)
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+        alert('Added')
+        event.target.reset()
+
+    }
     return (
-        <div>
+        <div className="container">
             <div>
-                <img className="w-25" src={products.pic} alt="" />
-                <h1>Product Name : {products.pName}</h1>
-                <h1>Supplier : {products.sName}</h1>
-                <p>Price : {products.price}</p>
-                <p>Quantity : {products.qt}</p>
-                <button onClick={() => deliver(products._id)}>Delivered</button>{/* decrease one */}
+
+                <div className="sm-d-flex-wrap d-flex justify-content-center align-items-center">
+                    <img className="w-25" src={products.pic} alt="" />
+                    <div className="mx-5">
+                        <h3>Product Name : {products.pName}</h3>
+                        <h4>Supplier : {products.sName}</h4>
+                        <h4>Price : {products.price}</h4>
+                        <div className="d-flex mb-3">
+                            <h5>Quantity : {products.qt}</h5>
+                            <form onSubmit={addQuantity} className='d-flex align-items-center'>{/* increase */}
+                                <input className="form-control mx-4" type="number" name="quantity" width={'5'} placeholder="Product Quantity" required />
+                                <input className="btn btn-info text-white" type="submit" value="Update Quantity" />
+                            </form>
+                        </div>
+                        <button className="btn btn-success" onClick={() => deliver(products._id)}>Delivered <AiOutlineCarryOut /></button>{/* decrease one */}
+                        <Link className="btn btn-link " to='/all-product'>Go Manage Product</Link>
+                    </div>
+
+                </div>
+
             </div>
 
-            <Link to='/all-product'>Go Manage Product</Link>
-            <Form className='w-50 mx-auto'>{/* increase */}
-                <Form.Group className="mb-2" >
-                    <Form.Control type="number" placeholder="Product Quantity" required />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit Product
-                </Button>
-            </Form>
+
+
         </div>
     );
 };

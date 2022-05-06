@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../../assets/Style/SupplyProduct.css'
+import { BsArrowUpCircle } from 'react-icons/bs';
+
 const SupplyProduct = () => {
     const [products, setProduct] = useState([])
     useEffect(() => {
@@ -18,14 +20,15 @@ const SupplyProduct = () => {
                 {
                     products.slice(0, 6).map(product =>
                         <div key={product._id} className="card p-2 mx-3 cards">
-                            <img className='w-100' src={product.pic} alt="" />
-                            <p>{product.pName}</p>
-                            <p>{product.price}</p>
-                            <p>{product.qt}</p>
-                            <p>{product.sName}</p>
-                            
-                            <button onClick={() => navigate(`/update-quantity/${product._id}`)} className='btn btn-info text-white'>Stock Update</button>
-                            
+                            <img className='w-100 mb-2' src={product.pic} alt="" />
+                            <ul style={{ listStyle: 'none' }}>
+                                <li><h5>{product.pName}</h5></li>
+                                <li>$ {product.price}</li>
+                                <li>{product.qt}</li>
+                                <li>{product.sName}</li>
+                            </ul>
+                            <button onClick={() => navigate(`/update-quantity/${product._id}`)} className='btn btn-info text-white'>Stock Update <BsArrowUpCircle /></button>
+
                         </div>
                     )
                 }

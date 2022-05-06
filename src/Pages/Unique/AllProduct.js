@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Table from 'react-bootstrap/Table'
+import { FaTrashAlt } from 'react-icons/fa';
+import { HiViewGridAdd } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 const AllProduct = () => {
     const [products, setProduct] = useState([])
     useEffect(() => {
@@ -10,64 +12,56 @@ const AllProduct = () => {
             .then(data => setProduct(data))
     }, [])
 
-    const deletebtn=id=>{
-        const ask= window.confirm('Are sure to delete')
-        if(ask){
+    const deletebtn = id => {
+        const ask = window.confirm('Are sure to delete')
+        if (ask) {
             console.log(id)
             // const url=`http://localhost:5000/products/${id}`
-            const url=`https://secret-eyrie-28226.herokuapp.com/products/${id}`
-            fetch(url,{
-                method:'DELETE'
+            const url = `https://secret-eyrie-28226.herokuapp.com/products/${id}`
+            fetch(url, {
+                method: 'DELETE'
             })
-            .then(res=>res.json())
-            .then(data=>{
-                if(data.deletedCount>0){
-                    console.log('deleted')
-                    const remaining=products.filter(product=>product._id !==id)
-                    setProduct(remaining)
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        console.log('deleted')
+                        const remaining = products.filter(product => product._id !== id)
+                        setProduct(remaining)
+                        toast('Product Deleted Form Here');
+                    }
+                })
         }
     }
     return (
         <div className='container'>
+            <ToastContainer />
             <h1 className='text-center mt-2 mb-2'>All Product List</h1>
             <div className='d-flex justify-content-between'>
-            <h2>Total Listed Product : {products.length}</h2>
-            <Link className='btn btn-success mb-2' to={'/add-item'}>Add New Item</Link>
-
+                <h2>Total Listed Product : {products.length}</h2>
+                <Link className='btn btn-success mb-2' to={'/add-item'}><HiViewGridAdd/> Add New Item</Link>
             </div>
-            <Table className='text-center' responsive="sm" striped bordered hover variant="info">
-
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Image</th>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Qt.</th>
-                        <th>Supplier</th>
-                        <th>Option</th>
-                    </tr>
-                </thead>
+            <div className='row gy-3 gx-3 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 '>
                 {
                     products.map(product =>
-                        <tbody>
-                            <tr>
-                                <td>{product._id.slice(21,25)}</td>
-                                <td><img width={'50'} src={product.pic} alt="" /></td>
-                                <td>{product.pName}</td>
-                                <td>{product.price}</td>
-                                <td>{product.qt}</td>
-                                <td>{product.sName}</td>
-                                <td>
-                                    <button onClick={()=>deletebtn(product._id)} className='btn btn-danger'>Delete</button>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <div className='card p-2'>
+                            <div className="d-flex align-items-center">
+                                <img className='rounded-circle' width={'25%'} height={'50%'} src={product.pic} alt="" />
+                                <ul style={{ listStyle: 'none' }}>
+                                    <li><h6>Product: {product.pName}</h6></li>
+                                    <li><h6>Price: {product.price}</h6></li>
+                                    <li><h6>Quantity: {product.qt}</h6></li>
+                                    <li><h6>Sipplier: {product.sName}</h6></li>
+                                    {/* <li><h6>Code: {product._id.slice(21, 25)}</h6></li> */}
+                                </ul>
+                            </div>
+                            <div className=''>
+                            <button onClick={() => deletebtn(product._id)} className='btn btn-danger w-100 '><FaTrashAlt/> Delete</button>
+                            </div>
+                        </div>
+
                     )
                 }
-            </Table>
+            </div>
         </div>
     );
 };

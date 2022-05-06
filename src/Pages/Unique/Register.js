@@ -48,8 +48,6 @@ const Register = () => {
     }
     return (
         <div>
-            <div className='p-4 bg-info'>
-            </div>
             <div className='container'>{spinner}</div>
             <ToastContainer />
             <Form onSubmit={registerForm} className='w-25 m-auto'>

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../Spacial/firebase_init';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,12 +10,27 @@ import { ToastContainer, toast } from 'react-toastify';
 const Login = () => {
     const [emailPassLogin, emailPassLoginUser, emailPassLoginLoading, emailPassLoginError] = useSignInWithEmailAndPassword(auth);
     const [loginGoogle, userLoginGoogle, loadingLoginGoogle, errLoginGoogle] = useSignInWithGoogle(auth);
-
+    const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
     //return coming path
     if (userLoginGoogle || emailPassLoginUser) {
+        
+        //jwt
+        const url='http://localhost:5000/login'
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({
+                email:user.email
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => localStorage.setItem("cToken", data.token));
+        
         navigate(from, { replace: true });
     }
     //Loading 
@@ -56,12 +71,9 @@ const Login = () => {
     }
     return (
         <div>
-            <div className='p-4 bg-info'>
-            </div>
             <div className='container'>{spinner}</div>
             <ToastContainer />
             <Form onSubmit={loginEmailPass} className='w-25 m-auto'>
-
                 <span className='mb-3 mt-3 h3 border-bottom h4 pb-2'>Please Login</span>
                 <Form.Group className="mb-3 mt-4 cards" controlId="formBasicEmail">
                     <Form.Control type="email" ref={refmail} placeholder="Enter email" required />

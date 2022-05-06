@@ -32,3 +32,13 @@ Carousel.Item{
   transform: translate(-50%, -50%);
   mix-blend-mode: screen;
 }
+
+.active{
+  background-color: white;
+  border-left: 2px solid rgb(22, 22, 22);
+  border-right: 2px solid rgb(22, 22, 22);
+  color: #000;
+}
+.link{
+  color: white;
+}
