@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Footer from '../../Common/Footer';
 import Banner from '../Home/Banner';
 import SupplyProduct from '../Home/SupplyProduct';
 import TextBG from '../Home/TextBG';
+import Promo from './Promo';
 
 const Home = () => {
     return (
@@ -10,7 +11,8 @@ const Home = () => {
             <Banner></Banner>
             <SupplyProduct></SupplyProduct>
             <TextBG></TextBG>
-            <Link to='/all-product'>Go Manage Product</Link>
+            <Promo></Promo>
+            <Footer></Footer>
         </div>
     );
 };

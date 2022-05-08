@@ -8,17 +8,18 @@ const AddItems = () => {
     const [user, loading, error] = useAuthState(auth);
     const addItem = (event) => {
         const pName = event.target.pName.value
-        const pic = event.target.pic.value
         const price = event.target.price.value
         const qt = event.target.qt.value
         const sName = event.target.sName.value
-        const product = { pName, pic, price, qt, sName }
+        const pic = event.target.pic.value
+        const desc = event.target.desc.value
+        const product = { pName, qt, price, sName, pic, desc }
         const url = `http://localhost:5000/products`
         fetch(url, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json',
-                'authorization': `${user.email} ${localStorage.getItem("cToken")}`
+                'authorization': `${user.email} ${localStorage.getItem("cToken")}`,
+                'content-type': 'application/json'
             },
             body: JSON.stringify(product)
         })
@@ -56,17 +57,23 @@ const AddItems = () => {
                         <input type="text" className="form-control" name='pName' placeholder="Your Product Name" required />
                     </div>
 
-                    <div className="col-md-4">
+                    <div className="col-md-2">
                         <label className="form-label border-bottom border-secondary">Price</label>
                         <div className="input-group ">
                             <span className="input-group-text">$</span>
                             <input type="number" className="form-control" name='price' placeholder="Product Price" required />
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-2">
                         <label className="form-label border-bottom border-secondary">Quantity</label>
                         <div className="input-group ">
                             <input className="form-control" type="number" name='qt' placeholder="Product Quantity" required />
+                        </div>
+                    </div>
+                    <div className="col-md-4">
+                        <label className="form-label border-bottom border-secondary">Supplier</label>
+                        <div className="input-group ">
+                            <input className="form-control" type="text" name='qt' placeholder="Supplier Name" required />
                         </div>
                     </div>
 
@@ -76,18 +83,19 @@ const AddItems = () => {
                     </div>
 
                     <div className="col-md-6">
-                        <label className="form-label border-bottom border-secondary">Supplier</label>
-                        <input type="text" className="form-control" name='sName' placeholder="Supplier Name" required />
+                        <label className="form-label border-bottom border-secondary">Description</label>
+                        <input type="text" className="form-control" name='desc' placeholder="Product Description" required />
                     </div>
 
                     <div className="col-12">
-                        <button className="btn btn-primary w-100" type="submit">Submit Product</button>
+                        <button className="btn btn-outline-info w-100" type="submit">Submit Product</button>
                     </div>
                 </form>
                 {errorMassage}
             </div>
-            <div className='text-center mt-3'>
-                <Link className='btn btn-dark mb-2 mx-auto text-white' to={'/all-product'}>Check All Item <BsArrowRightCircle /></Link>
+            <div className='d-flex justify-content-between mt-3'>
+                <Link className='btn btn-outline-primary' to={'/all-product'}>Check All Item <BsArrowRightCircle /></Link>
+                <Link className='btn btn-outline-primary ms-2' to={'/my-item'}>Check Your Items <BsArrowRightCircle /></Link>
             </div>
         </div>
     );

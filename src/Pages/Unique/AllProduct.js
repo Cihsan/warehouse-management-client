@@ -3,6 +3,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { HiViewGridAdd } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import Footer from '../Common/Footer';
 const AllProduct = () => {
     const [products, setProduct] = useState([])
     useEffect(() => {
@@ -33,35 +34,38 @@ const AllProduct = () => {
         }
     }
     return (
-        <div className='container'>
-            <ToastContainer />
-            <h1 className='text-center mt-2 mb-2'>All Product List</h1>
-            <div className='d-flex justify-content-between'>
-                <h2>Total Listed Product : {products.length}</h2>
-                <Link className='btn btn-success mb-2' to={'/add-item'}><HiViewGridAdd/> Add New Item</Link>
-            </div>
-            <div className='row gy-3 gx-3 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 '>
-                {
-                    products.map(product =>
-                        <div className='card p-2'>
-                            <div className="d-flex align-items-center">
-                                <img className='rounded-circle' width={'25%'} height={'50%'} src={product.pic} alt="" />
-                                <ul style={{ listStyle: 'none' }}>
-                                    <li><h6>Product: {product.pName}</h6></li>
-                                    <li><h6>Price: {product.price}</h6></li>
-                                    <li><h6>Quantity: {product.qt}</h6></li>
-                                    <li><h6>Sipplier: {product.sName}</h6></li>
-                                    {/* <li><h6>Code: {product._id.slice(21, 25)}</h6></li> */}
-                                </ul>
+        <div>
+            <div className='container'>
+                <ToastContainer />
+                <h1 className='text-center mt-2 mb-2'>All Product List</h1>
+                <div className='d-flex justify-content-between'>
+                    <h2>Total Listed Product : {products.length}</h2>
+                    <Link className='btn btn-outline-info mb-2' to={'/add-item'}><HiViewGridAdd /> Add New Item</Link>
+                </div>
+                <div className='row gy-3 gx-3 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 '>
+                    {
+                        products.map(product =>
+                            <div className='card p-2 zoom'>
+                                <div className="d-flex align-items-center">
+                                    <img className='rounded-circle' width={'25%'} height={'50%'} src={product.pic} alt="" />
+                                    <ul style={{ listStyle: 'none' }}>
+                                        <li><h6>Product: {product.pName}</h6></li>
+                                        <li><h6>Price: {product.price}</h6></li>
+                                        <li><h6>Quantity: {product.qt}</h6></li>
+                                        <li><h6>Sipplier: {product.sName}</h6></li>
+                                        {/* <li><h6>Code: {product._id.slice(21, 25)}</h6></li> */}
+                                    </ul>
+                                </div>
+                                <div className=''>
+                                    <button onClick={() => deletebtn(product._id)} className='btn btn-outline-danger w-100 '><FaTrashAlt /> Delete</button>
+                                </div>
                             </div>
-                            <div className=''>
-                            <button onClick={() => deletebtn(product._id)} className='btn btn-danger w-100 '><FaTrashAlt/> Delete</button>
-                            </div>
-                        </div>
 
-                    )
-                }
+                        )
+                    }
+                </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

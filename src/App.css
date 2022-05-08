@@ -1,10 +1,8 @@
 .App {
   margin: 0 auto;
 }
-Carousel.Item{
-  background-color:#000;
-}
-.banner{
+
+.banner {
   mix-blend-mode: multiply;
   height: 90vh;
 }
@@ -20,7 +18,7 @@ Carousel.Item{
 .text {
   background-color: rgb(255, 255, 255);
   color: black;
-  font-size: 5vw; 
+  font-size: 5vw;
   font-weight: bold;
   margin: 0 auto;
   padding: 10px;
@@ -33,12 +31,18 @@ Carousel.Item{
   mix-blend-mode: screen;
 }
 
-.active{
-  background-color: white;
+.active {
   border-left: 2px solid rgb(22, 22, 22);
   border-right: 2px solid rgb(22, 22, 22);
-  color: #000;
+  /* color: #000; */
 }
-.link{
+
+.link {
   color: white;
+}
+
+.promo {
+  background-image: url(https://i.ibb.co/QJBZR7v/promo5.png);
+  background-repeat: no-repeat;
+  height: 250px;
 }

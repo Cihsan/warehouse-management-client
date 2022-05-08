@@ -9,21 +9,21 @@ import { RiShieldUserLine } from 'react-icons/ri';
 
 const Header = () => {
     const [user] = useAuthState(auth);
-    
+
     return (
         <nav>
             <div class="px-3 py-2 border-bottom">
                 <div class="container d-flex flex-wrap justify-content-between align-items-center ">
-                    <span>HelpLine <MdPhoneInTalk className='text-danger'/> <small>+123-4567-987</small></span>
+                    <span>HelpLine <MdPhoneInTalk className='text-danger' /> <small>+123-4567-987</small></span>
                     <div>
 
                     </div>
                     {
-                        user ?<span><span className='h5'><RiShieldUserLine/> {user.displayName}</span> <button className='btn btn-outline-secondary' title='Sign Out' onClick={()=>signOut(auth)}><BiLogOutCircle/></button></span>:
-                        <div class="d-flex">
-                        <NavLink className={({ isActive }) => (isActive ? "active nav-link text-dark" : "link nav-link text-dark")} to="/login">Login</NavLink>
-                        <NavLink className={({ isActive }) => (isActive ? "active nav-link text-dark" : "link nav-link text-dark")} to="/register">Register</NavLink>
-                    </div>
+                        user ? <span><span className='h5'><RiShieldUserLine /> {user.displayName}</span> <button className='btn btn-outline-secondary' title='Sign Out' onClick={() => signOut(auth)}><BiLogOutCircle /></button></span> :
+                            <div class="d-flex">
+                                <NavLink className={({ isActive }) => (isActive ? "active nav-link text-dark" : "link nav-link text-dark")} to="/login">Login</NavLink>
+                                <NavLink className={({ isActive }) => (isActive ? "active nav-link text-dark" : "link nav-link text-dark")} to="/register">Register</NavLink>
+                            </div>
                     }
                 </div>
             </div>
@@ -41,14 +41,18 @@ const Header = () => {
                                 <NavLink className={({ isActive }) => (isActive ? "active nav-link" : "link nav-link text-white")} to="/blogs">Blogs</NavLink>
                             </li>
                             <li>
-                                <NavLink className={({ isActive }) => (isActive ? "active nav-link" : "link nav-link text-white")} to="/add-item">Add Item</NavLink>
+                                {
+                                    user ? <NavLink className={({ isActive }) => (isActive ? "active nav-link" : "link nav-link text-white")} to="/add-item">Add Item</NavLink> : ''
+                                }
+                            </li>
+                            <li>{
+                                user ? <NavLink className={({ isActive }) => (isActive ? "active nav-link" : "link nav-link text-white")} to="/all-product">All Item</NavLink> : ''
+                            }
                             </li>
                             <li>
-                                <NavLink className={({ isActive }) => (isActive ? "active nav-link" : "link nav-link text-white")} to="/all-product">All Item</NavLink>
-                                {/* <NavLink className="nav-link text-white" to="/all-product">All Item</NavLink> */}
-                            </li>
-                            <li>
-                                <NavLink className={({ isActive }) => (isActive ? "active nav-link" : "link nav-link text-white")} to="/my-item">My item</NavLink>
+                                {
+                                    user?<NavLink className={({ isActive }) => (isActive ? "active nav-link" : "link nav-link text-white")} to="/my-item">My item</NavLink>:''
+                                }
                             </li>
 
                         </ul>
