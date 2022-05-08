@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Form from 'react-bootstrap/Form'
 import { ToastContainer, toast } from 'react-toastify';
 import { BsArrowRightCircle } from 'react-icons/bs';
+import Button from 'react-bootstrap/esm/Button';
 import auth from '../../Spacial/firebase_init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 const AddItems = () => {
     const [user, loading, error] = useAuthState(auth);
     const addItem = (event) => {
+        event.preventDefault()
         const pName = event.target.pName.value
         const price = event.target.price.value
         const qt = event.target.qt.value
@@ -14,20 +17,24 @@ const AddItems = () => {
         const pic = event.target.pic.value
         const desc = event.target.desc.value
         const product = { pName, qt, price, sName, pic, desc }
-        const url = `http://localhost:5000/products`
+        console.log(product);
+
+        const url = `https://secret-eyrie-28226.herokuapp.com/products`
         fetch(url, {
             method: 'POST',
             headers: {
-                'authorization': `${user.email} ${localStorage.getItem("cToken")}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify(product)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
-        toast('Your Product Successfully Added');
-        event.target.reset()
+            .then(data => {
+                toast('Your Product Successfully Added');
+                console.log(data);
+            })
         event.preventDefault()
+        event.target.reset()
+
     }
     let spinner;
     if (loading) {
@@ -46,53 +53,42 @@ const AddItems = () => {
         <div className='container '>
             <ToastContainer />
             {spinner}
+            {errorMassage}
             <div className='text-center mt-3'>
                 <h2>Add Your Best Product</h2>
             </div>
-            <div className='mt-3'>
-                <form onSubmit={addItem} className="row g-3">
-
-                    <div className="col-md-4">
-                        <label className="form-label border-bottom border-secondary">Product Name</label>
-                        <input type="text" className="form-control" name='pName' placeholder="Your Product Name" required />
-                    </div>
-
-                    <div className="col-md-2">
-                        <label className="form-label border-bottom border-secondary">Price</label>
-                        <div className="input-group ">
-                            <span className="input-group-text">$</span>
-                            <input type="number" className="form-control" name='price' placeholder="Product Price" required />
-                        </div>
-                    </div>
-                    <div className="col-md-2">
-                        <label className="form-label border-bottom border-secondary">Quantity</label>
-                        <div className="input-group ">
-                            <input className="form-control" type="number" name='qt' placeholder="Product Quantity" required />
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <label className="form-label border-bottom border-secondary">Supplier</label>
-                        <div className="input-group ">
-                            <input className="form-control" type="text" name='qt' placeholder="Supplier Name" required />
-                        </div>
-                    </div>
-
-                    <div className="col-md-6">
-                        <label className="form-label border-bottom border-secondary">Image URL</label>
-                        <input type="text" className="form-control" name='pic' placeholder="Product image URL" required />
-                    </div>
-
-                    <div className="col-md-6">
-                        <label className="form-label border-bottom border-secondary">Description</label>
-                        <input type="text" className="form-control" name='desc' placeholder="Product Description" required />
-                    </div>
-
-                    <div className="col-12">
-                        <button className="btn btn-outline-info w-100" type="submit">Submit Product</button>
-                    </div>
-                </form>
-                {errorMassage}
+            <div className='container'>
+            <Form onSubmit={addItem} className='row col row-cols-md-3 row-cols-sm-2'>
+                <Form.Group className="mb-2" >
+                <Form.Label>Product Name</Form.Label>
+                    <Form.Control type="text" name='pName' placeholder="Your Product Name" required />
+                </Form.Group>
+                <Form.Group className="mb-2" >
+                <Form.Label>Price</Form.Label>
+                    <Form.Control type="number" name='price' placeholder="Product Price" required />
+                </Form.Group>
+                <Form.Group className="mb-2" >
+                <Form.Label>Quantity</Form.Label>
+                    <Form.Control type="number" name='qt' placeholder="Product Quantity" required />
+                </Form.Group>
+                <Form.Group className="mb-2" >
+                <Form.Label>image URL</Form.Label>
+                    <Form.Control type="text" name='pic' placeholder="Product image URL" />
+                </Form.Group>
+                <Form.Group className="mb-2" >
+                <Form.Label>Supplier</Form.Label>
+                    <Form.Control type="text" name='sName' placeholder="Supplier Name" required />
+                </Form.Group>
+                <Form.Group className="mb-2" >
+                <Form.Label>Description</Form.Label>
+                    <Form.Control type="text" name='desc' placeholder="Product Description" required />
+                </Form.Group>
+                <Button className='w-100 mt-2' variant="primary" type="submit">
+                    Submit Product
+                </Button>
+            </Form>
             </div>
+
             <div className='d-flex justify-content-between mt-3'>
                 <Link className='btn btn-outline-primary' to={'/all-product'}>Check All Item <BsArrowRightCircle /></Link>
                 <Link className='btn btn-outline-primary ms-2' to={'/my-item'}>Check Your Items <BsArrowRightCircle /></Link>

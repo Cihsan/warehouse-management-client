@@ -47,12 +47,13 @@ const AllProduct = () => {
                         products.map(product =>
                             <div className='card p-2 zoom'>
                                 <div className="d-flex align-items-center">
-                                    <img className='rounded-circle' width={'25%'} height={'50%'} src={product.pic} alt="" />
+                                    <img className='rounded-circle zoom' width={'25%'} height={'50%'} src={product.pic} alt="" />
                                     <ul style={{ listStyle: 'none' }}>
                                         <li><h6>Product: {product.pName}</h6></li>
                                         <li><h6>Price: {product.price}</h6></li>
                                         <li><h6>Quantity: {product.qt}</h6></li>
                                         <li><h6>Sipplier: {product.sName}</h6></li>
+                                        <li><h6>Desc..: {product.desc}</h6></li>
                                         {/* <li><h6>Code: {product._id.slice(21, 25)}</h6></li> */}
                                     </ul>
                                 </div>

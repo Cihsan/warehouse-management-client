@@ -12,24 +12,13 @@ This is project design like warehouse or inventory site using react app[goods-st
 * make own write in blog section
 * make responsive
 
-### `npm start`
+Open [goods-store](https://goods-store-49d6a.web.app/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [Github Front-End Site](https://github.com/ProgrammingHeroWC4/warehouse-management-client-side-Cihsan) to view it in your browser.
+
+
+Open [Github backEnd Server](https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-Cihsan) to view it in your browser.
 
 Open [my-question in stackoverflow](https://stackoverflow.com/questions/72102819/how-to-manage-or-control-grid-layout-with-button).
 
-### `My Server Setup`
 
-```Js
-npm init -y
-```
-```Js
-npm i express cors mongodb
-```
-```Js
-npm i -g nodemon
-```
-```Js
-npm i dotenv --save
-```

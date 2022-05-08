@@ -18,7 +18,7 @@ const UpdateQuantity = () => {
     const deliver = () => {
         const quantity = parseInt(products.qt) - 1
         const uQuantity = { quantity }
-        const url = `http://localhost:5000/products/${id}`
+        const url = `https://secret-eyrie-28226.herokuapp.com/products/${id}`
         const ask = window.confirm('Are sure to Deliver')
         if (ask) {
             fetch(url, {
@@ -43,7 +43,7 @@ const UpdateQuantity = () => {
         const inPutquantity = event.target.quantity.value;
         const quantity = parseInt(products.qt) + parseInt(inPutquantity)
         const uQuantity = { quantity }
-        const url = `http://localhost:5000/products/${id}`
+        const url = `https://secret-eyrie-28226.herokuapp.com/products/${id}`
         const ask = window.confirm('Are sure to Update')
         if (ask) {
             fetch(url, {
@@ -71,6 +71,7 @@ const UpdateQuantity = () => {
                     <div className="mx-5">
                         <h3>Product Name : {products.pName}</h3>
                         <h4>Supplier : {products.sName}</h4>
+                        <h4>Desc.. : {products.desc}</h4>
                         <h4>Price : {products.price}</h4>
                         <div className="d-flex mb-3">
                             <h5>Quantity : {products.qt}</h5>

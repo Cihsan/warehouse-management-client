@@ -2,24 +2,24 @@ import React, { useRef } from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../Spacial/firebase_init';
-import { sendPasswordResetEmail } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import { RiErrorWarningFill } from 'react-icons/ri';
 
 const Login = () => {
     const [emailPassLogin, emailPassLoginUser, emailPassLoginLoading, emailPassLoginError] = useSignInWithEmailAndPassword(auth);
     const [loginGoogle, userLoginGoogle, loadingLoginGoogle, errLoginGoogle] = useSignInWithGoogle(auth);
+    const [sendPasswordResetEmail, sending, errorReset] = useSendPasswordResetEmail(auth);
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
     //return coming path
     if (userLoginGoogle || emailPassLoginUser || user) {
-
+        navigate(from, { replace: true });
         //jwt
-        const url = 'http://localhost:5000/login'
+       const url = 'https://secret-eyrie-28226.herokuapp.com/login'
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({
@@ -30,12 +30,12 @@ const Login = () => {
             },
         })
             .then((response) => response.json())
-            .then((data) => localStorage.setItem("cToken", data?.token));
-        navigate(from, { replace: true });
+            .then((data) => localStorage.setItem("sToken", data.token));
+        
     }
     //Loading 
     let spinner;
-    if (loadingLoginGoogle || emailPassLoginLoading || loading) {
+    if (loadingLoginGoogle || emailPassLoginLoading || loading ||sending) {
         spinner = <div class="d-flex align-items-center text-info">
             <strong>Loading...</strong>
             <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
@@ -43,13 +43,14 @@ const Login = () => {
     }
     //Error Handle 
     let errorMassage
-    if (errLoginGoogle || emailPassLoginError || error) {
+    if (errLoginGoogle || emailPassLoginError || error ||errorReset) {
         errorMassage =
             <div class="alert alert-warning" role="alert">
                 <RiErrorWarningFill />
                 {errLoginGoogle?.message}
                 {emailPassLoginError?.message}
                 {error?.message}
+                {errorReset?.message}
             </div>
     }
 
@@ -75,6 +76,7 @@ const Login = () => {
     return (
         <div className='container'>
             {spinner}
+            {errorMassage}
             <ToastContainer />
             <div className='row col row-cols-md-3 justify-content-center'>
                 <Form onSubmit={loginEmailPass}>
@@ -94,7 +96,6 @@ const Login = () => {
             <div className='text-center mt-3 mb-3'>
                 <span>Forget Password ?<button class="btn btn-link" onClick={resetPass}>Reset Password</button></span><br /><br />
                 <small><button className='btn btn-warning' onClick={() => loginGoogle()}>Login With Google</button></small><br /><br />
-                {errorMassage}
             </div>
         </div>
     );

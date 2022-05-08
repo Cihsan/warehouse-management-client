@@ -10,6 +10,7 @@ import { RiErrorWarningFill } from 'react-icons/ri';
 const Register = () => {
     const [newUserEmail, userNewEmail, loadingNewEmail, errorNewEmail,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [profileUpdate, updating, updateError] = useUpdateProfile(auth);
+    console.log(newUserEmail);
     //Path Declare
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
@@ -40,13 +41,13 @@ const Register = () => {
         const name = event.target.name.value
         const email = event.target.email.value
         const pass = event.target.pass.value
-        await newUserEmail(email, pass)
+        await newUserEmail(email, pass, name)
         await profileUpdate({ displayName: name });
-
     }
     return (
         <div className='container'>
             {spinner}
+            {errorMassage}
             <ToastContainer />
             <div className='row col row-cols-md-3 justify-content-center'>
                 <Form onSubmit={registerForm}>
@@ -68,11 +69,6 @@ const Register = () => {
                         Register
                     </Button>
                 </Form>
-            </div>
-
-
-            <div className='text-center mt-3 mb-3'>
-                {errorMassage}
             </div>
         </div>
     );

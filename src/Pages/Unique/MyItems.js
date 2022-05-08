@@ -7,10 +7,10 @@ const MyItems = () => {
     const [items, setItem] = useState([])
     const [user] = useAuthState(auth);
     useEffect(() => {
-        const url = 'http://localhost:5000/my-items';
+        const url = 'https://secret-eyrie-28226.herokuapp.com/my-items';
         fetch(url, {
             headers: {
-                'authorization': `${user.email} ${localStorage.getItem("cToken")}`,
+                'authorization': `${user.email} ${localStorage.getItem("sToken")}`,
             },
         })
             .then(res => res.json())

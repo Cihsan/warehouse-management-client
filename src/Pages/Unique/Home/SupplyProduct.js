@@ -27,6 +27,7 @@ const SupplyProduct = () => {
                                 <li>$ {product.price}</li>
                                 <li>{product.qt}</li>
                                 <li>{product.sName}</li>
+                                <li>{product.desc}</li>
                             </ul>
                             <button onClick={() => navigate(`/update-quantity/${product._id}`)} className='btn btn-outline-info'>Stock Update <BsArrowUpCircle /></button>
 
