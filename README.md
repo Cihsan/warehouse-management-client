@@ -1,10 +1,16 @@
 # Goods Store
 
-This project was bootstrapped with [Create React App](https://goods-store-49d6a.web.app/login).
+This is project design like warehouse or inventory site using react app[goods-store](https://goods-store-49d6a.web.app/login).
 
-## Available Scripts
-
-In the project directory, you can run:
+* Use Mongodb For database
+* Use own api server and heroku
+* Use protected route or path
+* Use react Router Without loading navigation
+* Use firebase Auhtentication
+* Use Secure Email Password Login & logout
+* Use Popular Social Media Login & logout
+* make own write in blog section
+* make responsive
 
 ### `npm start`
 
