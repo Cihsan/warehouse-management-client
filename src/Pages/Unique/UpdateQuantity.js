@@ -7,8 +7,7 @@ const UpdateQuantity = () => {
     const { id } = useParams()
     const [products, setProduct] = useState([])
     useEffect(() => {
-        const url = `https://secret-eyrie-28226.herokuapp.com/products/${id}`
-
+        const url = `https://pure-ridge-54487.herokuapp.com/update/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data))
@@ -18,7 +17,7 @@ const UpdateQuantity = () => {
     const deliver = () => {
         const quantity = parseInt(products.qt) - 1
         const uQuantity = { quantity }
-        const url = `https://secret-eyrie-28226.herokuapp.com/products/${id}`
+        const url = `https://pure-ridge-54487.herokuapp.com/update/${id}`
         const ask = window.confirm('Are sure to Deliver')
         if (ask) {
             fetch(url, {
@@ -33,8 +32,6 @@ const UpdateQuantity = () => {
                     toast('Your Product Ready to Deliver')
                 })
         }
-
-
     }
 
     //Quantity Update
@@ -43,7 +40,7 @@ const UpdateQuantity = () => {
         const inPutquantity = event.target.quantity.value;
         const quantity = parseInt(products.qt) + parseInt(inPutquantity)
         const uQuantity = { quantity }
-        const url = `https://secret-eyrie-28226.herokuapp.com/products/${id}`
+        const url = `https://pure-ridge-54487.herokuapp.com/update/${id}`
         const ask = window.confirm('Are sure to Update')
         if (ask) {
             fetch(url, {
@@ -64,11 +61,11 @@ const UpdateQuantity = () => {
     }
     return (
         <div className="container">
-            <div>
+            <div className="mt-5">
                 <ToastContainer />
-                <div className="sm-d-flex-wrap d-flex justify-content-center align-items-center">
-                    <img className="w-25" src={products.pic} alt="" />
-                    <div className="mx-5">
+                <div className="row justify-content-center align-items-center g-5">
+                    <img className="col-md-4 col-sm-6 col" src={products.pic} alt="" />
+                    <div className="col-md-8 col-sm-6 col">
                         <h3>Product Name : {products.pName}</h3>
                         <h4>Supplier : {products.sName}</h4>
                         <h4>Desc.. : {products.desc}</h4>

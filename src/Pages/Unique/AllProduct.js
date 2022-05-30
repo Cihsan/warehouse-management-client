@@ -4,11 +4,14 @@ import { HiViewGridAdd } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import Footer from '../Common/Footer';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init()
 const AllProduct = () => {
     const [products, setProduct] = useState([])
     useEffect(() => {
-        // fetch('http://localhost:5000/products/')
-        fetch('https://secret-eyrie-28226.herokuapp.com/products')
+        fetch('https://pure-ridge-54487.herokuapp.com/all-products/')
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])
@@ -17,8 +20,7 @@ const AllProduct = () => {
         const ask = window.confirm('Are sure to delete')
         if (ask) {
             console.log(id)
-            // const url=`http://localhost:5000/products/${id}`
-            const url = `https://secret-eyrie-28226.herokuapp.com/products/${id}`
+            const url=`https://pure-ridge-54487.herokuapp.com/all-products/${id}`
             fetch(url, {
                 method: 'DELETE'
             })
@@ -45,7 +47,7 @@ const AllProduct = () => {
                 <div className='row gy-3 gx-3 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 '>
                     {
                         products.map(product =>
-                            <div className='card p-2 zoom'>
+                            <div className='card p-2 zoom' data-aos="fade-right">
                                 <div className="d-flex align-items-center">
                                     <img className='rounded-circle zoom' width={'25%'} height={'50%'} src={product.pic} alt="" />
                                     <ul style={{ listStyle: 'none' }}>

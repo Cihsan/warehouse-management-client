@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init()
 const FeatureOne = () => {
     const [products, setProduct] = useState([])
     useEffect(() => {
-        fetch('https://secret-eyrie-28226.herokuapp.com/products')
+        fetch('https://pure-ridge-54487.herokuapp.com/home')
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])

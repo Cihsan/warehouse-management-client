@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form'
 import { ToastContainer, toast } from 'react-toastify';
 import { BsArrowRightCircle } from 'react-icons/bs';
 import Button from 'react-bootstrap/esm/Button';
-import auth from '../../Spacial/firebase_init';
-import { useAuthState } from 'react-firebase-hooks/auth';
+// import auth from '../../Spacial/firebase_init';
+// import { useAuthState } from 'react-firebase-hooks/auth';
 const AddItems = () => {
-    const [user, loading, error] = useAuthState(auth);
+    // const [user, loading, error] = useAuthState(auth);
     const addItem = (event) => {
         event.preventDefault()
         const pName = event.target.pName.value
@@ -19,10 +19,11 @@ const AddItems = () => {
         const product = { pName, qt, price, sName, pic, desc }
         console.log(product);
 
-        const url = `https://secret-eyrie-28226.herokuapp.com/products`
+        const url = `https://pure-ridge-54487.herokuapp.com/add-product`
         fetch(url, {
             method: 'POST',
             headers: {
+                // 'authorization':`${user.email} ${localStorage.getItem("sToken")}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify(product)
@@ -36,24 +37,12 @@ const AddItems = () => {
         event.target.reset()
 
     }
-    let spinner;
-    if (loading) {
-        spinner = <div class="d-flex align-items-center text-info">
-            <strong>Loading...</strong>
-            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-        </div>
-    }
-    let errorMassage
-    if (error) {
-        errorMassage = <small className='text-danger border border-primary p-2 mt-5'>
-            {error?.message}
-        </small>
-    }
+    /* waterwater */
     return (
         <div className='container '>
             <ToastContainer />
-            {spinner}
-            {errorMassage}
+            {/* {spinner}
+            {{errorMassage}} */}
             <div className='text-center mt-3'>
                 <h2>Add Your Best Product</h2>
             </div>
@@ -83,7 +72,7 @@ const AddItems = () => {
                 <Form.Label>Description</Form.Label>
                     <Form.Control type="text" name='desc' placeholder="Product Description" required />
                 </Form.Group>
-                <Button className='w-100 mt-2' variant="primary" type="submit">
+                <Button className='w-100 mt-2 btn-outline-dark' variant="outline-dark" type="submit">
                     Submit Product
                 </Button>
             </Form>

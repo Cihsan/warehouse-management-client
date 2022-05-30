@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../../assets/Style/SupplyProduct.css'
 import { BsArrowUpCircle } from 'react-icons/bs';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init()
 
 const SupplyProduct = () => {
     const [products, setProduct] = useState([])
     useEffect(() => {
-        fetch('https://secret-eyrie-28226.herokuapp.com/products')
+        fetch('https://pure-ridge-54487.herokuapp.com/home')
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])
@@ -15,7 +19,7 @@ const SupplyProduct = () => {
     return (
         <div className='container'>
             <h1 className='text-center mt-2 mb-5'>Just For You</h1>
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 sm-g-5 justify-content-center">
+            <div data-aos="fade-up" className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 sm-g-5 justify-content-center">
                 {
                     products.slice(0, 6).map(product =>
                         <div key={product._id} className="card p-2 mx-3 cards" >

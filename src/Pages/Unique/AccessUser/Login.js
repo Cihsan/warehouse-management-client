@@ -6,6 +6,7 @@ import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword,
 import auth from '../../../Spacial/firebase_init';
 import { ToastContainer, toast } from 'react-toastify';
 import { RiErrorWarningFill } from 'react-icons/ri';
+import { FcGoogle } from 'react-icons/fc';
 
 const Login = () => {
     const [emailPassLogin, emailPassLoginUser, emailPassLoginLoading, emailPassLoginError] = useSignInWithEmailAndPassword(auth);
@@ -17,9 +18,8 @@ const Login = () => {
     let from = location.state?.from?.pathname || "/";
     //return coming path
     if (userLoginGoogle || emailPassLoginUser || user) {
-        navigate(from, { replace: true });
         //jwt
-       const url = 'https://secret-eyrie-28226.herokuapp.com/login'
+       const url = 'https://pure-ridge-54487.herokuapp.com/loginSM'
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({
@@ -31,7 +31,8 @@ const Login = () => {
         })
             .then((response) => response.json())
             .then((data) => localStorage.setItem("sToken", data.token));
-        
+            navigate(from, { replace: true });
+
     }
     //Loading 
     let spinner;
@@ -55,12 +56,15 @@ const Login = () => {
     }
 
     const refmail = useRef('')
-    const loginEmailPass = (event) => {
+    const loginEmailPass = async (event) => {
         const email = refmail.current.value;
         const pass = event.target.pass.value
         console.log(email, pass);
         emailPassLogin(email, pass)
+        /* const {data} = await axios.post('https://pure-ridge-54487.herokuapp.com/login', {email});
+        localStorage.setItem('sToken', data.token); */
         event.preventDefault()
+        event.target.reset()
     }
     // toast
     const resetPass = async (event) => {
@@ -95,7 +99,7 @@ const Login = () => {
             </div>
             <div className='text-center mt-3 mb-3'>
                 <span>Forget Password ?<button class="btn btn-link" onClick={resetPass}>Reset Password</button></span><br /><br />
-                <small><button className='btn btn-warning' onClick={() => loginGoogle()}>Login With Google</button></small><br /><br />
+                <small><button className='btn btn-outline-info' onClick={() => loginGoogle()}><FcGoogle></FcGoogle> Login With Google</button></small><br /><br />
             </div>
         </div>
     );

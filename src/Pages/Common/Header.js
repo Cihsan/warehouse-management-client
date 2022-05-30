@@ -13,7 +13,7 @@ const Header = () => {
     return (
         <nav>
             <div class="px-3 py-2 border-bottom" style={{backgroundColor: 'rgb(226 235 240'}}>
-                <div class="container d-flex flex-wrap justify-content-between align-items-center ">
+                <div class="container d-flex justify-content-between align-items-center ">
                     <span>HelpLine <MdPhoneInTalk className='text-danger' /> <small>+123-4567-987</small></span>
                     <div>
 

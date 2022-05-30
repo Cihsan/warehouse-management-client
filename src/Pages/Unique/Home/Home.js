@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import Footer from '../../Common/Footer';
 import Banner from '../Home/Banner';
 import SupplyProduct from '../Home/SupplyProduct';
