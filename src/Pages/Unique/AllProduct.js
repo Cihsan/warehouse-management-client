@@ -11,7 +11,7 @@ AOS.init()
 const AllProduct = () => {
     const [products, setProduct] = useState([])
     useEffect(() => {
-        fetch('https://pure-ridge-54487.herokuapp.com/all-products/')
+        fetch('http://localhost:5000/all-products/')
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])
@@ -20,7 +20,7 @@ const AllProduct = () => {
         const ask = window.confirm('Are sure to delete')
         if (ask) {
             console.log(id)
-            const url=`https://pure-ridge-54487.herokuapp.com/all-products/${id}`
+            const url=`http://localhost:5000/all-products/${id}`
             fetch(url, {
                 method: 'DELETE'
             })

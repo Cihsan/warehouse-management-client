@@ -19,7 +19,7 @@ const Login = () => {
     //return coming path
     if (userLoginGoogle || emailPassLoginUser || user) {
         //jwt
-       const url = 'https://pure-ridge-54487.herokuapp.com/loginSM'
+       const url = 'http://localhost:5000/loginSM'
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({
@@ -61,7 +61,7 @@ const Login = () => {
         const pass = event.target.pass.value
         console.log(email, pass);
         emailPassLogin(email, pass)
-        /* const {data} = await axios.post('https://pure-ridge-54487.herokuapp.com/login', {email});
+        /* const {data} = await axios.post('http://localhost:5000/login', {email});
         localStorage.setItem('sToken', data.token); */
         event.preventDefault()
         event.target.reset()

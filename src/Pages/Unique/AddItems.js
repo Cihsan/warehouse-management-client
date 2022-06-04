@@ -4,9 +4,12 @@ import Form from 'react-bootstrap/Form'
 import { ToastContainer, toast } from 'react-toastify';
 import { BsArrowRightCircle } from 'react-icons/bs';
 import Button from 'react-bootstrap/esm/Button';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../Spacial/firebase_init';
 // import auth from '../../Spacial/firebase_init';
 // import { useAuthState } from 'react-firebase-hooks/auth';
 const AddItems = () => {
+    const [user] = useAuthState(auth);
     // const [user, loading, error] = useAuthState(auth);
     const addItem = (event) => {
         event.preventDefault()
@@ -16,14 +19,15 @@ const AddItems = () => {
         const sName = event.target.sName.value
         const pic = event.target.pic.value
         const desc = event.target.desc.value
-        const product = { pName, qt, price, sName, pic, desc }
+        const email=user.email
+        const product = {email,pName, qt, price, sName, pic, desc }
         console.log(product);
 
-        const url = `https://pure-ridge-54487.herokuapp.com/add-product`
+        const url = `http://localhost:5000/add-product`
         fetch(url, {
             method: 'POST',
             headers: {
-                // 'authorization':`${user.email} ${localStorage.getItem("sToken")}`,
+                'authorization':`${user.email} ${localStorage.getItem("sToken")}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify(product)

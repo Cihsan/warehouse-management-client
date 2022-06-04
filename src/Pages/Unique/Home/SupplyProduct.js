@@ -10,7 +10,7 @@ AOS.init()
 const SupplyProduct = () => {
     const [products, setProduct] = useState([])
     useEffect(() => {
-        fetch('https://pure-ridge-54487.herokuapp.com/home')
+        fetch('http://localhost:5000/home')
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])

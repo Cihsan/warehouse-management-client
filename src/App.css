@@ -42,7 +42,9 @@
 }
 
 .promo {
-  background-image: url(https://i.ibb.co/QJBZR7v/promo5.png);
+  background-image: url(https://i.ibb.co/WH8W1fn/promo5.png);
   background-repeat: no-repeat;
   height: 250px;
+  background-size: cover;
+  
 }

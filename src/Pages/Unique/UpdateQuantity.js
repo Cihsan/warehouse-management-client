@@ -7,7 +7,7 @@ const UpdateQuantity = () => {
     const { id } = useParams()
     const [products, setProduct] = useState([])
     useEffect(() => {
-        const url = `https://pure-ridge-54487.herokuapp.com/update/${id}`
+        const url = `http://localhost:5000/update/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data))
@@ -17,7 +17,7 @@ const UpdateQuantity = () => {
     const deliver = () => {
         const quantity = parseInt(products.qt) - 1
         const uQuantity = { quantity }
-        const url = `https://pure-ridge-54487.herokuapp.com/update/${id}`
+        const url = `http://localhost:5000/update/${id}`
         const ask = window.confirm('Are sure to Deliver')
         if (ask) {
             fetch(url, {
@@ -40,7 +40,7 @@ const UpdateQuantity = () => {
         const inPutquantity = event.target.quantity.value;
         const quantity = parseInt(products.qt) + parseInt(inPutquantity)
         const uQuantity = { quantity }
-        const url = `https://pure-ridge-54487.herokuapp.com/update/${id}`
+        const url = `http://localhost:5000/update/${id}`
         const ask = window.confirm('Are sure to Update')
         if (ask) {
             fetch(url, {

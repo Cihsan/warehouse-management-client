@@ -1,10 +1,13 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiFillTwitterCircle } from 'react-icons/ai';
 import { BsFacebook } from 'react-icons/bs';
 import { ImLinkedin } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 import '../../assets/Style/Footer.css'
+import auth from '../../Spacial/firebase_init';
 const Footer = () => {
+    const [user] = useAuthState(auth);
     return (
         <div>
 
@@ -20,8 +23,8 @@ const Footer = () => {
                             <h6>Categories</h6>
                             <ul className="footer-links">
                                 <li><Link to="/blogs">Blog</Link></li>
-                                <li><Link to="/add-item">Add Item</Link></li>
-                                <li><Link to="/all-product">All Item</Link></li>
+                                {user &&<li><Link to="/add-item">Add Item</Link></li>}
+                                {user &&<li><Link to="/all-product">All Item</Link></li>}
                             </ul>
                         </div>
 
